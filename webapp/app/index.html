@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termék Statisztikák</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    <h1>Termék Statisztikák</h1>
+    <div>
+        <p>Átlagár: <span id="average-price"></span></p>
+        <p>Legdrágább termék: <span id="most-expensive-product"></span></p>
+        <p>Legolcsóbb termék: <span id="cheapest-product"></span></p>
+        <p>Termékek száma kategóriánként: <pre id="product-count-by-category"></pre></p>
+    </div>
+    <div>
+        <input type="text" id="category-input" placeholder="Add meg a kategóriát">
+        <button id="calculate-average-price-by-category">Átlagár számítása kategóriánként</button>
+        <p>Átlagár kategóriánként: <span id="average-price-by-category"></span></p>
+    </div>
+    <div id="chart-container"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Kategória</th>
+                <th>Ár</th>
+            </tr>
+        </thead>
+        <tbody id="products-table-body"></tbody>
+    </table>
+    <script src="./src/main.js" type="module"></script>
+</body>
+</html>
