@@ -1,4 +1,4 @@
-class ProductStatistics {
+export default class ProductStatistics {
     constructor(products) {
         if (!Array.isArray(products)) {
             throw new Error('Products should be an array');
@@ -69,5 +69,3 @@ class ProductStatistics {
         return averagePrices;
     }
 }
-
-module.exports = ProductStatistics;

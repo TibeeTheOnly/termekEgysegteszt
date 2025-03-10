@@ -123,4 +123,43 @@ describe('ProductStatistics Class', () => {
         const stats = new ProductStatistics([]);
         expect(stats.getProductCountByCategory()).toEqual({});
     });
+
+    // Átlagár számítása kategóriánként tesztelése
+
+    it('should calculate the average price by category', () => {
+        const products = [
+            { name: 'Product 1', category: 'Category 1', price: 100 },
+            { name: 'Product 2', category: 'Category 1', price: 200 },
+            { name: 'Product 3', category: 'Category 2', price: 300 }
+        ];
+        const stats = new ProductStatistics(products);
+        expect(stats.getAveragePriceByCategory('Category 1')).toBe(150);
+    });
+
+    it('should throw an error if no products are found in the category', () => {
+        const products = [
+            { name: 'Product 1', category: 'Category 1', price: 100 },
+            { name: 'Product 2', category: 'Category 1', price: 200 },
+            { name: 'Product 3', category: 'Category 2', price: 300 }
+        ];
+        const stats = new ProductStatistics(products);
+        expect(() => stats.getAveragePriceByCategory('Category 3')).toThrow('No products found in category: Category 3');
+    });
+
+    // Átlagár számítása kategóriánkénti csoportosítással tesztelése
+
+    it('should calculate the average price grouped by category', () => {
+        const products = [
+            { name: 'Product 1', category: 'Category 1', price: 100 },
+            { name: 'Product 2', category: 'Category 1', price: 200 },
+            { name: 'Product 3', category: 'Category 2', price: 300 }
+        ];
+        const stats = new ProductStatistics(products);
+        expect(stats.getAveragePriceGroupByCategory()).toEqual({ 'Category 1': 150, 'Category 2': 300 });
+    });
+
+    it('should return an empty object if there are no products', () => {
+        const stats = new ProductStatistics([]);
+        expect(stats.getAveragePriceGroupByCategory()).toEqual({});
+    });
 });

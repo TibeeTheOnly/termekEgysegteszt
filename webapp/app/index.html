@@ -4,32 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termék Statisztikák</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./src/style.css">
 </head>
-<body>
-    <h1>Termék Statisztikák</h1>
-    <div>
-        <p>Átlagár: <span id="average-price"></span></p>
-        <p>Legdrágább termék: <span id="most-expensive-product"></span></p>
-        <p>Legolcsóbb termék: <span id="cheapest-product"></span></p>
-        <p>Termékek száma kategóriánként: <pre id="product-count-by-category"></pre></p>
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Termék Statisztikák</h1>
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Átlagár</h5>
+                        <p class="card-text" id="average-price"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Legdrágább termék</h5>
+                        <p class="card-text" id="most-expensive-product"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Legolcsóbb termék</h5>
+                        <p class="card-text" id="cheapest-product"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Termékek száma kategóriánként</h5>
+                        <pre class="card-text" id="product-count-by-category"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-dark text-light" id="category-input" placeholder="Add meg a kategóriát">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="calculate-average-price-by-category">Átlagár számítása kategóriánként</button>
+                    </div>
+                </div>
+                <p class="mt-2">Átlagár kategóriánként: <span id="average-price-by-category"></span></p>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div id="chart-container" class="d-flex justify-content-around align-items-end border p-3 bg-secondary" style="height: 300px;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th>Név</th>
+                            <th>Kategória</th>
+                            <th>Ár</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div>
-        <input type="text" id="category-input" placeholder="Add meg a kategóriát">
-        <button id="calculate-average-price-by-category">Átlagár számítása kategóriánként</button>
-        <p>Átlagár kategóriánként: <span id="average-price-by-category"></span></p>
-    </div>
-    <div id="chart-container"></div>
-    <table>
-        <thead>
-            <tr>
-                <th>Név</th>
-                <th>Kategória</th>
-                <th>Ár</th>
-            </tr>
-        </thead>
-        <tbody id="products-table-body"></tbody>
-    </table>
     <script src="./src/main.js" type="module"></script>
 </body>
 </html>

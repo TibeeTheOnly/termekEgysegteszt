@@ -1,18 +1,5 @@
 import ProductStatistics from './ProductStatistics.js';
-
-function generateRandomProducts(count) {
-    const categories = ['Electronics', 'Clothing', 'Books'];
-    const products = [];
-    for (let i = 0; i < count; i++) {
-        const product = {
-            name: `Product ${i + 1}`,
-            category: categories[Math.floor(Math.random() * categories.length)],
-            price: Math.floor(Math.random() * 1000) + 1
-        };
-        products.push(product);
-    }
-    return products;
-}
+import { generateRandomProducts } from './generateRandomProducts.js';
 
 function displayProducts(products) {
     const tableBody = document.getElementById('products-table-body');
@@ -54,16 +41,17 @@ function displayAveragePriceGroupByCategory(stats) {
 
     const chartContainer = document.getElementById('chart-container');
     chartContainer.innerHTML = '';
+    const maxPrice = Math.max(...chartData.map(data => data.averagePrice));
     chartData.forEach(data => {
         const bar = document.createElement('div');
         bar.className = 'bar';
-        bar.style.height = `${data.averagePrice}px`;
+        bar.style.height = `${(data.averagePrice / maxPrice) * 100}%`; // Adjust the height proportionally
         bar.innerText = `${data.category}: ${data.averagePrice.toFixed(2)}`;
         chartContainer.appendChild(bar);
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+async function init() {
     const products = generateRandomProducts(10);
     const stats = new ProductStatistics(products);
 
@@ -76,4 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     displayAveragePriceGroupByCategory(stats);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await init();
 });
